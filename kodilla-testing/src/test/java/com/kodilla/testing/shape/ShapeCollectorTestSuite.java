@@ -110,7 +110,7 @@ public class ShapeCollectorTestSuite {
     @DisplayName("Shape Collector test")
     class ShapeCollectorTest{
         @Test
-        void testShapaCollectorAddFigure(){
+        void testShapeCollectorAddFigure(){
             //Given
             ShapeCollector shapeCollector = new ShapeCollector();
             Square square = new Square(10,"Test Square");

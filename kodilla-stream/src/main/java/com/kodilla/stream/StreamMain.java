@@ -3,8 +3,6 @@ package com.kodilla.stream;
 import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 
-import javax.print.DocFlavor;
-
 public class StreamMain {
 
     public static void main(String[] args) {
@@ -16,16 +14,16 @@ public class StreamMain {
         expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);*/
 
         PoemBeautifier poemBeautifier = new PoemBeautifier();
-        System.out.println(poemBeautifier.beautify("Temporary text 1", String::toUpperCase));
-        System.out.println(poemBeautifier.beautify("Temporary text 2", String::toLowerCase));
-        System.out.println(poemBeautifier.beautify("Temporary text 3", text -> {
+        System.out.println(poemBeautifier.beautify("Temporary text 1", (text) -> text.toUpperCase()));
+        System.out.println(poemBeautifier.beautify("Temporary text 2", (text) -> text.toLowerCase()));
+        System.out.println(poemBeautifier.beautify("Temporary text 3", (text) -> {
             String beautyString = "-";
             for(int i=0;i<text.length();i++){
                 beautyString += text.charAt(i)+"-";
             }
             return beautyString;
         }));
-        System.out.println(poemBeautifier.beautify("Temporary text 4", text -> {
+        System.out.println(poemBeautifier.beautify("Temporary text 4", (text) -> {
             String beautyString = "";
             for(int i=0;i<text.length();i++){
                 beautyString += text.charAt(text.length()-1 - i);

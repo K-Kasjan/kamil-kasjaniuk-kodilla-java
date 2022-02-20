@@ -25,17 +25,17 @@ class MovieStore {
         flashTranslations.add("Błyskawica");
         flashTranslations.add("Flash");
 
-        Map<String, List<String>> booksTitlesWithTranslations = new HashMap<>();
-        booksTitlesWithTranslations.put("IM", ironManTranslations);
-        booksTitlesWithTranslations.put("AV", avengersTranslations);
-        booksTitlesWithTranslations.put("FL", flashTranslations);
+        Map<String, List<String>> moviesTitlesWithTranslations = new HashMap<>();
+        moviesTitlesWithTranslations.put("IM", ironManTranslations);
+        moviesTitlesWithTranslations.put("AV", avengersTranslations);
+        moviesTitlesWithTranslations.put("FL", flashTranslations);
 
         System.out.println(
-                booksTitlesWithTranslations.entrySet().stream()
-                .flatMap(arr -> arr.getValue().stream())
+                moviesTitlesWithTranslations.entrySet().stream()
+                .flatMap(titleList -> titleList.getValue().stream())
                 .collect(Collectors.joining("!"))
                 );
 
-        return booksTitlesWithTranslations;
+        return moviesTitlesWithTranslations;
     }
 }

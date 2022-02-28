@@ -33,4 +33,9 @@ public class DirectFlight implements Flight{
     public int hashCode() {
         return Objects.hash(takeoffAirport);
     }
+
+    @Override
+    public String toString() {
+        return takeoffAirport + " - " + destinationAirport;
+    }
 }

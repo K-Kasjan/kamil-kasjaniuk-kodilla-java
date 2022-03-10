@@ -33,7 +33,7 @@ public class LibraryTestSuite {
             //When
             int librarySize = copiedLibrary.getBooks().size();
             //Then
-            Assertions.assertEquals(10,copiedLibrary.getBooks().size());
+            Assertions.assertEquals(10,librarySize);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class LibraryTestSuite {
             //When
             int librarySize = copiedLibrary.getBooks().size();
             //Then
-            Assertions.assertEquals(20,copiedLibrary.getBooks().size());
+            Assertions.assertEquals(20,librarySize);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

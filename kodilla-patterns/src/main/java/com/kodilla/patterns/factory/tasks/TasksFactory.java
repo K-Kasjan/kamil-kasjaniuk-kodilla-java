@@ -2,9 +2,9 @@ package com.kodilla.patterns.factory.tasks;
 
 public class TasksFactory {
 
-    public final String SHOPPING_TASK = "ShoppingTask";
-    public final String PAINTING_TASK = "PaintingTask";
-    public final String DIVING_TASK = "DivingTask";
+    public static final String SHOPPING_TASK = "ShoppingTask";
+    public static final String PAINTING_TASK = "PaintingTask";
+    public static final String DIVING_TASK = "DivingTask";
 
     public final Task makeTask(final String taskClass) {
         return switch (taskClass) {

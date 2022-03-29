@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class TaskListDaoTestSuite {
@@ -33,6 +32,6 @@ public class TaskListDaoTestSuite {
         assertEquals(LIST_NAME, readTask.get(0).getListName());
 
         //CleanUp
-        taskListDao.deleteTaskListsByListName(LIST_NAME);
+        taskListDao.delete(readTask.get(0));
     }
 }

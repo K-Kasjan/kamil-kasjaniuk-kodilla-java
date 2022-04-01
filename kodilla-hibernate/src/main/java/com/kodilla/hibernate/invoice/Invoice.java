@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@Table(name = "INVOICES")
 public class Invoice {
     private int id;
     private String number;
@@ -21,8 +20,6 @@ public class Invoice {
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID")
     public int getId() {
         return id;
     }
@@ -32,7 +29,7 @@ public class Invoice {
     }
 
     @NotNull
-    @Column(name = "NUMBER",unique = true)
+    @Column(unique = true)
     public String getNumber() {
         return number;
     }

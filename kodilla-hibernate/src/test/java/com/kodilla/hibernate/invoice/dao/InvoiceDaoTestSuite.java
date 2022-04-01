@@ -61,9 +61,10 @@ public class InvoiceDaoTestSuite {
 
         //When
         invoiceDao.save(invoice);
-        BigDecimal loadedInvoiceValue = invoiceDao.findById(invoice.getId()).get().getItems().get(0).getValue();
+        int id = invoice.getId();
+        BigDecimal loadedInvoiceValue = invoiceDao.findById(id).get().getItems().get(0).getValue();
 
         //Then
-        assertEquals(30,loadedInvoiceValue);
+        assertEquals(30,loadedInvoiceValue.intValue());
     }
 }

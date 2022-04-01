@@ -46,6 +46,7 @@ public class Invoice {
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "invoice_id")
     public List<Item> getItems() {
         return items;
     }

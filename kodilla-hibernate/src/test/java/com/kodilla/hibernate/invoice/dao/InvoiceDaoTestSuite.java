@@ -3,19 +3,18 @@ package com.kodilla.hibernate.invoice.dao;
 import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
+@Transactional
 public class InvoiceDaoTestSuite {
 
     @Autowired
@@ -48,8 +47,23 @@ public class InvoiceDaoTestSuite {
 
         //Then
         assertNotEquals(0,invoiceId);
+    }
 
-        //Clean
-        //invoiceDao.deleteById(invoiceId);
+    @Test
+    void testItemValue(){
+        //Given
+        Product product1 = new Product("Test 1");
+
+        Item item1 = new Item(product1, new BigDecimal(10),3);
+
+        Invoice invoice = new Invoice("1/03/2022");
+        invoice.getItems().add(item1);
+
+        //When
+        invoiceDao.save(invoice);
+        BigDecimal loadedInvoiceValue = invoiceDao.findById(invoice.getId()).get().getItems().get(0).getValue();
+
+        //Then
+        assertEquals(30,loadedInvoiceValue);
     }
 }

@@ -7,17 +7,10 @@ import java.math.BigDecimal;
 
 @Entity
 public class Item {
-    @Id
-    @GeneratedValue
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
     private Product product;
-    @NotNull
     private BigDecimal price;
-    @NotNull
     private int quantity = 0;
-    @NotNull
     private BigDecimal value;
 
     public Item(){}
@@ -29,24 +22,51 @@ public class Item {
         setValue();
     }
 
+    @Id
+    @GeneratedValue
     public int getId() {
         return id;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
         return product;
     }
 
+    @NotNull
     public BigDecimal getPrice() {
         return price;
     }
 
+    @NotNull
     public int getQuantity() {
         return quantity;
     }
 
+    @NotNull
     public BigDecimal getValue() {
         return value;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     private void setValue(){

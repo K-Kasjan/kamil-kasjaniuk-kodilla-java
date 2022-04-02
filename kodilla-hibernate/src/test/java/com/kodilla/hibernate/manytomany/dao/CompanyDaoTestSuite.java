@@ -6,13 +6,22 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -49,14 +58,39 @@ class CompanyDaoTestSuite {
         assertNotEquals(0, softwareMachineId);
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
+    }
 
-        //CleanUp
-        try {
-            companyDao.deleteById(softwareMachineId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
-        }
+    @Test
+    void testEmployeeNamedQuery(){
+        //Given
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("John", "Smith"));
+        employeeList.add(new Employee("Stephanie", "Clarckson"));
+        employeeList.add(new Employee("Linda", "Kovalsky"));
+        employeeList.add(new Employee("Steve", "Kovalsky"));
+        employeeDao.saveAll(employeeList);
+
+        //When
+        List<Employee> employeeListGiven = employeeDao.retrieveEmployeeByLastname("Kovalsky");
+
+        //Then
+        assertEquals(2, employeeListGiven.size());
+    }
+
+    @Test
+    void testCompanyNamedQuery(){
+        //Given
+        List<Company> companyList = new ArrayList<>();
+        companyList.add(new Company("Kodilla"));
+        companyList.add(new Company("Codilla"));
+        companyList.add(new Company("Wodilla"));
+        companyList.add(new Company("Kodillas"));
+        companyDao.saveAll(companyList);
+
+        //When
+        List<Company> companyListGiven = companyDao.retrieveCompanyWithNameStartsBy("Kod");
+
+        //Then
+        assertEquals(2, companyListGiven.size());
     }
 }
